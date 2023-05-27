@@ -3,21 +3,92 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="DodgerBlue">
-        <Canvas>
-            <Label Content="Authors" FontSize="25" Canvas.Left="560" Canvas.Bottom="365"></Label>
-            <ListBox Width="320" Height="350" Canvas.Left="452" Canvas.Top="50" BorderThickness="2"></ListBox>
-            <Label Content="Author Id : " FontSize="20" Canvas.Left="10" Canvas.Top="20"></Label>
-            <TextBox Width="110" Height="40" Canvas.Left="120" Canvas.Top="20"></TextBox>
-            <Label Content="Author Name : " FontSize="20" Canvas.Left="10" Canvas.Top="80" ></Label>
-            <TextBox Width="110" Height="40" Canvas.Left="155" Canvas.Top="82"></TextBox>
-            <Label Content="Author Surname : " Canvas.Left="10" Canvas.Top="140" FontSize="20"></Label>
-            <TextBox Width="110" Height="40" Canvas.Left="185" Canvas.Top="140"></TextBox>
-            <Button Content="Insert" Canvas.Left="170" Canvas.Top="200" FontSize="25" Width="120" Background="LightGreen" IsEnabled="False"></Button>
-            <Button Content="Delete" Canvas.Left="170" Canvas.Top="300" FontSize="25" Width="120" Background="LightGreen" IsEnabled="False"></Button>
-        </Canvas>
+        Title="MainWindow" 
+        WindowStartupLocation="CenterScreen"
+        Height="450" 
+        Width="800">
+    <Grid x:Name="MyGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Gray"
+                BorderThickness="0,0,0,2">
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="AddUser"
+                            BorderThickness="0"
+                            Background="DodgerBlue" 
+                            Command="{Binding AddAuthorCommand}"
+                            Width="130"
+                            Height="32"
+                            Margin="20,0,0,0">
+                        <Canvas>
+                            <TextBlock Text="New Author"
+                                       FontSize="20" 
+                                       Foreground="white"
+                                       Canvas.Left="-52"
+                                       Canvas.Top="-15" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center">
+                            </TextBlock>
+                        </Canvas>
+                    </Button>
+
+                    <Button x:Name="DeleteUser"
+                            Command="{Binding DeleteCommmand}"
+                            Background="red" 
+                            BorderThickness="0"
+                            Width="100"
+                            Height="32"
+                            Margin="40,0,0,0">
+                        <Canvas>
+                            <TextBlock Text="Delete"
+                                       FontSize="20" 
+                                       IsEnabled="False"
+                                       Foreground="white"
+                                       Canvas.Left="-27"
+                                       Canvas.Top="-15" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center">
+                            </TextBlock>
+                        </Canvas>
+                    </Button>
+
+                    <Button x:Name="Refresh"
+                            Background="DodgerBlue" 
+                            Width="100"
+                            BorderThickness="0"
+                            Command="{Binding RefreshCommand}"
+                            Height="32"
+                            Margin="40,0,0,0">
+                        <Canvas>
+                            <TextBlock Text="Refresh"
+                                       FontSize="20" 
+                                       Foreground="white"
+                                       IsEnabled="False"
+                                       Canvas.Left="-32"
+                                       Canvas.Top="-15" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center">
+                            </TextBlock>
+                        </Canvas>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <ScrollViewer x:Name="Scroll"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <WrapPanel x:Name="AuthorsWrapPanel">
+
+                </WrapPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>
