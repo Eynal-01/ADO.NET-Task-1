@@ -43,9 +43,6 @@ namespace Library.ViewModels
 
             DeleteCommmand = new RelayCommand((d) =>
             {
-                //if (AuthorsWrapPanel.Children[0] is NoResultFoundUC)
-                //    return;
-
                 var IDs = new List<string>();
                 foreach (var view in AuthorsWrapPanel.Children)
                 {
@@ -67,9 +64,6 @@ namespace Library.ViewModels
 
             CheckAllCommand = new RelayCommand((c) =>
             {
-                //if (AuthorsWrapPanel.Children[0] is NoResultFoundUC)
-                //    return;
-
                 foreach (var view in AuthorsWrapPanel.Children)
                 {
                     ((view as AuthorUC).DataContext as AuthorUCViewModel).IsChecked = checkAll;
@@ -84,8 +78,6 @@ namespace Library.ViewModels
 
             if (authors.Count == 0)
             {
-               // var noResultUC = new NoResultFoundUC();
-                //AuthorsWrapPanel.Children.Add(noResultUC);
                 return;
             }
             foreach (var author in authors)

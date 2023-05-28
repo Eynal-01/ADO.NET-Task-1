@@ -36,7 +36,7 @@ namespace Library.ViewModels
             {
                 if (Firstname.Trim() == string.Empty)
                 {
-                    MessageBox.Show("Please, add author firstname!");
+                    MessageBox.Show("Please, add author firstname!", "Warning!");
                     return;
                 }
                 if (Lastname.Trim() == string.Empty)

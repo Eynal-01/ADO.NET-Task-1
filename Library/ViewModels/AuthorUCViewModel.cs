@@ -25,17 +25,6 @@ namespace Library.ViewModels
         public AuthorUCViewModel(Author author)
         {
             Author = author;
-
-            //EditCommand = new RelayCommand((e) =>
-            //{
-            //    var editWindow = new EditWindow();
-            //    var editWindowViewModel = new EditWindowViewModel(author);
-            //    editWindow.DataContext = editWindowViewModel;
-
-            //    editWindow.Title = $"Edit Author {author.FirstName.Trim()} {author.LastName.Trim()}";
-            //    App.ChildWindow = editWindow;
-            //    editWindow.ShowDialog();
-            //});
         }
     }
 }

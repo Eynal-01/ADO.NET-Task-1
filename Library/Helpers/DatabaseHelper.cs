@@ -58,7 +58,6 @@ namespace Library.Helpers
 
                 using (var cmd = new SqlCommand(query, conn))
                 {
-                    //cmd.Parameters.Add(paramId);
                     cmd.ExecuteNonQuery();
                 }
             }
