@@ -27,5 +27,10 @@ namespace Library
             var mainWindowViewModel = new MainWindowViewModel();
             this.DataContext = mainWindowViewModel;
         }
+
+        private void IdTxtb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

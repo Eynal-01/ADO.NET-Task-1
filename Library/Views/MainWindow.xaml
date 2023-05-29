@@ -10,44 +10,39 @@
         WindowStartupLocation="CenterScreen"
         Height="450" 
         Width="800">
-    <Grid x:Name="MyGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="7*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <Canvas Height="434" VerticalAlignment="Bottom">
+        <TextBox FontSize="20" Width="120" Height="40" TextChanged="IdTxtb_TextChanged" Canvas.Left="30" Canvas.Top="43" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Id, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox FontSize="20" Width="120" Height="40" Canvas.Left="186" Canvas.Top="43" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox FontSize="20" Width="120" Height="40" Canvas.Left="340" Canvas.Top="43" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="30" VerticalAlignment="Top" Canvas.Top="13">Id</Label>
+        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="340" VerticalAlignment="Top" Canvas.Top="13">Firstname</Label>
+        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="186" VerticalAlignment="Top" Canvas.Top="10">Lastname</Label>
+        <Label FontSize="25" Canvas.Left="490" HorizontalAlignment="Center" Canvas.Top="13" VerticalAlignment="Top">Authors</Label>
 
-        <Border BorderBrush="Gray"
-                BorderThickness="0,0,0,2">
-            <Grid Grid.Row="0">
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="AddUser"
+        <Button x:Name="AddUser"
                             BorderThickness="0"
                             Background="DodgerBlue" 
                             Command="{Binding AddAuthorCommand}"
-                            Width="130"
-                            Height="32"
-                            Margin="20,0,0,0">
-                        <Canvas>
-                            <TextBlock Text="New Author"
+                            Canvas.Left="171" Canvas.Top="118" Width="150" Height="50">
+            <Canvas>
+                <TextBlock Text="Add Author" 
                                        FontSize="20" 
                                        Foreground="white"
                                        Canvas.Left="-52"
                                        Canvas.Top="-15" 
                                        HorizontalAlignment="Left" 
                                        VerticalAlignment="Center">
-                            </TextBlock>
-                        </Canvas>
-                    </Button>
+                </TextBlock>
+            </Canvas>
+        </Button>
 
-                    <Button x:Name="DeleteUser"
+        <Button x:Name="DeleteUser"
                             Command="{Binding DeleteCommmand}"
                             Background="red" 
                             BorderThickness="0"
-                            Width="100"
-                            Height="32"
-                            Margin="40,0,0,0">
-                        <Canvas>
-                            <TextBlock Text="Delete"
+                            Canvas.Left="170" Canvas.Top="271" Width="150" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Canvas>
+                <TextBlock Text="Delete"
                                        FontSize="20" 
                                        IsEnabled="False"
                                        Foreground="white"
@@ -55,19 +50,17 @@
                                        Canvas.Top="-15" 
                                        HorizontalAlignment="Left" 
                                        VerticalAlignment="Center">
-                            </TextBlock>
-                        </Canvas>
-                    </Button>
+                </TextBlock>
+            </Canvas>
+        </Button>
 
-                    <Button x:Name="Refresh"
-                            Background="DodgerBlue" 
-                            Width="100"
+        <Button x:Name="Refresh"
+                            Background="DodgerBlue"
                             BorderThickness="0"
                             Command="{Binding RefreshCommand}"
-                            Height="32"
-                            Margin="40,0,0,0">
-                        <Canvas>
-                            <TextBlock Text="Refresh"
+                            Canvas.Left="170" Canvas.Top="340" Width="150" Height="50">
+            <Canvas>
+                <TextBlock Text="Refresh"
                                        FontSize="20" 
                                        Foreground="white"
                                        IsEnabled="False"
@@ -75,20 +68,15 @@
                                        Canvas.Top="-15" 
                                        HorizontalAlignment="Left" 
                                        VerticalAlignment="Center">
-                            </TextBlock>
-                        </Canvas>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
-        <Grid Grid.Row="1">
-            <ScrollViewer x:Name="Scroll"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Disabled">
-                <WrapPanel x:Name="AuthorsWrapPanel">
-
-                </WrapPanel>
-            </ScrollViewer>
-        </Grid>
-    </Grid>
+                </TextBlock>
+            </Canvas>
+        </Button>
+        <ListBox Name="AuthorsListBox" ItemsSource="{Binding Authors}" SelectedIndex="{Binding SelectedId}" Width="300" Height="369" HorizontalAlignment="Center" Canvas.Left="490" VerticalAlignment="Top" Canvas.Top="48" FontSize="20">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectionChanged}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+    </Canvas>
 </Window>

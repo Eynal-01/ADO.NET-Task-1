@@ -62,14 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\AddAuthorWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AuthorUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,18 +71,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Models\Author.cs" />
-    <Compile Include="ViewModels\AddAuthorViewModel.cs" />
-    <Compile Include="ViewModels\AuthorUCViewModel.cs" />
+    <Compile Include="Repositories\Repo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="Views\AddAuthorWindow.xaml.cs">
-      <DependentUpon>AddAuthorWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AuthorUC.xaml.cs">
-      <DependentUpon>AuthorUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

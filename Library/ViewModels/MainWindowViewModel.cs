@@ -1,92 +1,75 @@
 ﻿using Library.Commands;
-using Library.Helpers;
 using Library.Models;
-using Library.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
+using Library.Repositories;
+using System.Collections.ObjectModel;
 
 namespace Library.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
         public RelayCommand CheckAllCommand { get; set; }
-        public RelayCommand DeleteCommmand { get; set; }
+        public RelayCommand SelectionChanged { get; set; }
         public RelayCommand RefreshCommand { get; set; }
         public RelayCommand AddAuthorCommand { get; set; }
 
-        public WrapPanel AuthorsWrapPanel { get; internal set; }
+        public Repo AuthorsRepo { get; set; }
 
-        bool checkAll = true;
+        private ObservableCollection<Author> authors;
+
+        public ObservableCollection<Author> Authors
+        {
+            get { return authors; }
+            set { authors = value; OnPropertyChanged();}
+        }
+
+        private int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; OnPropertyChanged(); }
+        }
+
+        private string firstName;
+
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; OnPropertyChanged(); }
+        }
+
+        private string lastName;
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; OnPropertyChanged(); }
+        }
+
+        private int ID;
+
+        public int SelectedId
+        {
+            get { return ID; }
+            set { ID = value; OnPropertyChanged(); }
+        }
+
 
         public MainWindowViewModel()
         {
-            AddAuthorCommand = new RelayCommand((a) =>
+            AuthorsRepo=new Repo();
+
+            Authors = AuthorsRepo.Getall();
+
+            AddAuthorCommand = new RelayCommand((obj) =>
             {
-                var addWindow = new AddAuthorWindow();
-                var addWindowViewModel = new AddAuthorViewModel();
-                addWindow.DataContext = addWindowViewModel;
-                App.ChildWindow = addWindow;
-                addWindow.Show();
+                AuthorsRepo.AddAuthor(Id, FirstName, LastName);
             });
 
-            RefreshCommand = new RelayCommand((r) =>
+            SelectionChanged = new RelayCommand((obj) =>
             {
-                AddAuthorsToView(DatabaseHelper.GetAuthorsFromDb());
-                MessageBox.Show(App.Current.MainWindow, "Successfully refreshed!", "Success!");
+                AuthorsRepo.DeleteAuthor(SelectedId);
             });
-
-            DeleteCommmand = new RelayCommand((d) =>
-            {
-                var IDs = new List<string>();
-                foreach (var view in AuthorsWrapPanel.Children)
-                {
-                    var viewModel = (view as AuthorUC).DataContext as AuthorUCViewModel;
-                    if (viewModel.IsChecked == true)
-                    {
-                        IDs.Add(viewModel.Author.Id);
-                    }
-                }
-                if (IDs.Count == 0)
-                {
-                    MessageBox.Show(App.Current.MainWindow, "Please, check author!", "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK, MessageBoxOptions.RightAlign);
-                    return;
-                }
-                DatabaseHelper.DeleteAuthorsByID(IDs);
-                AddAuthorsToView(DatabaseHelper.GetAuthorsFromDb());
-                MessageBox.Show(App.Current.MainWindow, $"{IDs.Count} author(s) deleted successfully!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK, MessageBoxOptions.RightAlign);
-            });
-
-            CheckAllCommand = new RelayCommand((c) =>
-            {
-                foreach (var view in AuthorsWrapPanel.Children)
-                {
-                    ((view as AuthorUC).DataContext as AuthorUCViewModel).IsChecked = checkAll;
-                }
-                checkAll = !checkAll;
-            });
-        }
-
-        public void AddAuthorsToView(List<Author> authors)
-        {
-            AuthorsWrapPanel.Children.Clear();
-
-            if (authors.Count == 0)
-            {
-                return;
-            }
-            foreach (var author in authors)
-            {
-                var authorUC = new AuthorUC();
-                var authorUCViewModel = new AuthorUCViewModel(author);
-                authorUC.DataContext = authorUCViewModel;
-                AuthorsWrapPanel.Children.Add(authorUC);
-            }
         }
     }
 }
