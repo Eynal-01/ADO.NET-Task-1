@@ -11,6 +11,7 @@ namespace Library.ViewModels
         public RelayCommand SelectionChanged { get; set; }
         public RelayCommand RefreshCommand { get; set; }
         public RelayCommand AddAuthorCommand { get; set; }
+        public RelayCommand DeleteCommand { get; set; }
 
         public Repo AuthorsRepo { get; set; }
 
@@ -68,7 +69,7 @@ namespace Library.ViewModels
 
             SelectionChanged = new RelayCommand((obj) =>
             {
-                AuthorsRepo.DeleteAuthor(SelectedId);
+                    AuthorsRepo.DeleteAuthor(SelectedId);
             });
 
             RefreshCommand = new RelayCommand((obj) =>

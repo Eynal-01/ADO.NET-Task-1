@@ -54,7 +54,6 @@ namespace Library.Repositories
             GetData();
         }
 
-
         public ObservableCollection<Author> Getall()
         {
             return Authors;
