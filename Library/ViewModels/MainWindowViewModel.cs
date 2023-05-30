@@ -19,7 +19,7 @@ namespace Library.ViewModels
         public ObservableCollection<Author> Authors
         {
             get { return authors; }
-            set { authors = value; OnPropertyChanged();}
+            set { authors = value; OnPropertyChanged(); }
         }
 
         private int id;
@@ -57,7 +57,7 @@ namespace Library.ViewModels
 
         public MainWindowViewModel()
         {
-            AuthorsRepo=new Repo();
+            AuthorsRepo = new Repo();
 
             Authors = AuthorsRepo.Getall();
 
@@ -69,6 +69,11 @@ namespace Library.ViewModels
             SelectionChanged = new RelayCommand((obj) =>
             {
                 AuthorsRepo.DeleteAuthor(SelectedId);
+            });
+
+            RefreshCommand = new RelayCommand((obj) =>
+            {
+                AuthorsRepo.GetData();
             });
         }
     }

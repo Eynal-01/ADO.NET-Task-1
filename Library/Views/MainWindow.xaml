@@ -12,17 +12,17 @@
         Width="800">
     <Canvas Height="434" VerticalAlignment="Bottom">
         <TextBox FontSize="20" Width="120" Height="40" TextChanged="IdTxtb_TextChanged" Canvas.Left="30" Canvas.Top="43" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Id, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox FontSize="20" Width="120" Height="40" Canvas.Left="186" Canvas.Top="43" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox FontSize="20" Width="120" Height="40" Canvas.Left="340" Canvas.Top="43" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="30" VerticalAlignment="Top" Canvas.Top="13">Id</Label>
-        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="340" VerticalAlignment="Top" Canvas.Top="13">Firstname</Label>
-        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="186" VerticalAlignment="Top" Canvas.Top="10">Lastname</Label>
+        <TextBox FontSize="20" Width="120" Height="40" Canvas.Left="186" Canvas.Top="43" Text="{Binding FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox FontSize="20" Width="120" Height="40" Canvas.Left="340" Canvas.Top="43" Text="{Binding LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="30" VerticalAlignment="Top" Canvas.Top="15">Id</Label>
+        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="340" VerticalAlignment="Top" Canvas.Top="15">Firstname</Label>
+        <Label FontSize="15" HorizontalAlignment="Center" Canvas.Left="186" VerticalAlignment="Top" Canvas.Top="15">Lastname</Label>
         <Label FontSize="25" Canvas.Left="490" HorizontalAlignment="Center" Canvas.Top="13" VerticalAlignment="Top">Authors</Label>
 
         <Button x:Name="AddUser"
-                            BorderThickness="0"
                             Background="DodgerBlue" 
                             Command="{Binding AddAuthorCommand}"
+                            Style="{StaticResource MyButtonStyle2}"
                             Canvas.Left="171" Canvas.Top="118" Width="150" Height="50">
             <Canvas>
                 <TextBlock Text="Add Author" 
